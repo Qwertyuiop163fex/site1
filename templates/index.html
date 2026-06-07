@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мой сайт</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Mulish:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #161b24;
+      --border: #252d3d;
+      --accent: #4fffb0;
+      --accent2: #3b82f6;
+      --text: #e8edf5;
+      --muted: #6b7a99;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Mulish', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ─────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      background: rgba(13,15,20,.85);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      color: var(--accent);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .85rem;
+      margin-left: 1.8rem;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* ── HERO ────────────────────────────────── */
+    .hero {
+      padding: 6rem 2rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(79,255,176,.08);
+      border: 1px solid rgba(79,255,176,.25);
+      color: var(--accent);
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 2px;
+      margin-bottom: 1.6rem;
+    }
+    h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+    h1 span { color: var(--accent); }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent);
+      color: #000;
+      font-family: 'Mulish', sans-serif;
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      padding: .7rem 1.6rem;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn:hover { opacity: .85; transform: translateY(-1px); }
+
+    /* ── CLOCK ───────────────────────────────── */
+    .clock-bar {
+      max-width: 860px;
+      margin: 0 auto 1rem;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+    .clock-bar .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .3; }
+    }
+    #clock { color: var(--accent); font-weight: 600; }
+
+    /* ── POSTS ───────────────────────────────── */
+    .section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+    .section-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.6rem;
+      padding-bottom: .8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .posts { display: grid; gap: 1rem; }
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.4rem 1.6rem;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color .2s, transform .15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .post-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transition: transform .2s;
+    }
+    .post-card:hover { border-color: var(--accent2); transform: translateX(4px); }
+    .post-card:hover::before { transform: scaleY(1); }
+    .post-card h2 { font-family: 'Unbounded', sans-serif; font-size: .9rem; margin-bottom: .5rem; }
+    .post-card p { color: var(--muted); font-size: .88rem; line-height: 1.6; }
+    .post-meta { font-size: .72rem; color: var(--muted); margin-top: .8rem; }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 1.4rem;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+    footer code {
+      background: var(--surface);
+      padding: .15rem .45rem;
+      border-radius: 3px;
+      font-size: .72rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">MY_SITE</div>
+  <nav>
+    <a href="/">Главная</a>
+    <a href="#posts">Записи</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">Flask + Python</div>
+  <h1>Простой сайт<br>на <span>Python</span></h1>
+  <p>Минималистичный стартер на Flask. Роуты, шаблоны Jinja2, JSON API — всё готово к расширению.</p>
+  <a class="btn" href="#posts">Смотреть записи ↓</a>
+</section>
+
+<div class="clock-bar">
+  <div class="dot"></div>
+  Серверное время: <span id="clock">--:--:--</span>
+</div>
+
+<section class="section" id="posts">
+  <div class="section-title">Последние записи</div>
+  <div class="posts">
+    {% for post in posts %}
+    <a class="post-card" href="/post/{{ post.id }}">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.body }}</p>
+      <div class="post-meta">{{ post.date }}</div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<footer>
+  Работает на <code>Flask</code> · Python · <code>localhost:5000</code>
+</footer>
+
+<script>
+  async function tick() {
+    try {
+      const r = await fetch('/api/time');
+      const d = await r.json();
+      document.getElementById('clock').textContent = d.time;
+    } catch(e) {}
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+
+</body>
+</html>
